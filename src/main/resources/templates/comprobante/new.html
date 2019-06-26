@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+		<h1>Comprobante</h1>
+
+		<div class="card border-success text-center ">
+			<div class="card-header border-success">Comprobantes</div>
+			<div class="card-body">
+
+				<form th:action="@{/comprobante/save}" th:object="${comprobante}"
+					method="post">
+					<div class="form-group row">
+						<label for="txtId" class="col-sm-2 col-form-label">Id :</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="txtId" name="txtId"
+								placeholder="Id" th:value="${comprobante.idComprobante}" disabled="disabled">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="txtName" class="col-sm-2 col-form-label">Descripcion
+							:</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="descripcion" name="descripcion"
+								placeholder="Descripcion" th:value="${comprobante.descripcion}">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="txtManager_id" class="col-sm-2 col-form-label">Total pago</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="totalpago"
+								name="totalpago" placeholder="Total pago"
+								th:value="${comprobante.totalpago}">
+						</div>
+					</div>
+				=
+					<div class="form-group row">
+						<label for="txtLocation" class="col-sm-2 col-form-label">Cotizacion
+							:</label>
+						<div class="col-sm-10">							
+							<select th:field="*{cotizacion}" class="form-control"  id="cotizacionId" name="cotizacionId">
+								<option th:each="coti: ${cotizaciones}"
+									th:value="${coti.idCotizacion}" th:text="${coti.cantidad}"
+									th:selected="${comprobante.cotizacion.idCotizacion}"></option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="txtLocation" class="col-sm-2 col-form-label">Empleado
+							:</label>
+						<div class="col-sm-10">							
+							<select th:field="*{empleado}" class="form-control"  id="empleadoId" name="empleadoId">
+								<option th:each="emple: ${empleados}"
+									th:value="${emple.idEmpleado}" th:text="${emple.Nombreempleado}"
+									th:selected="${comprobante.empleado.idEmpleado}"></option>
+							</select>
+						</div>
+					</div>
+						<div class="form-group row">
+						<label for="txtManager_id" class="col-sm-2 col-form-label">Fecha de emision</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="fechaemision"
+								name="fechaemision" placeholder="Fecha de emision"
+								th:value="${comprobante.Fechaemision}">
+						</div>
+					</div>
+
+
+					<div class="form-group row">
+						<div class="col-sm-10">
+							<button type="submit" class="btn btn-primary">
+								<i class="fas fa-save"></i> Grabar
+							</button>
+							<a th:href="@{/comprobante}" class="btn btn-danger"> <i
+								class="fas fa-undo"></i> Cancelar
+							</a>
+						</div>
+					</div>
+				</form>
+
+			</div>
+			<div class="card-footer text-muted border-success"></div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

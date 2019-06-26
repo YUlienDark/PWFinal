@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+		<h1>Nuevo Cliente</h1>
+
+		<div class="card border-success text-center ">
+			<div class="card-header border-success"></div>
+			<div class="card-body">
+
+				<form th:action="@{/cliente/save}" th:object="${cliente}"
+					method="post">
+					<div class="form-group row">
+						<label for="txtId" class="col-sm-2 col-form-label">Id :</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="txtId" name="txtId"
+								placeholder="Id" th:value="${cliente.idCliente}" disabled="disabled">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="txtName" class="col-sm-2 col-form-label">Razon social
+							:</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="Razonsocial" name="Razonsocial"
+								placeholder="Name" th:value="${cliente.Razonsocial}">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="txtManager_id" class="col-sm-2 col-form-label">Tipo de documento
+							</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="tipo_doc"
+								name="tipo_doc" placeholder="Tipo documento"
+								th:value="${cliente.tipo_doc}">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="txtManager_id" class="col-sm-2 col-form-label">Numero de documento
+							</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="num_doc"
+								name="num_doc" placeholder="Numero de documento"
+								th:value="${cliente.num_doc}">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="txtManager_id" class="col-sm-2 col-form-label">Numero de telefono
+							</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="num_telf"
+								name="num_telf" placeholder="Numero de telefono"
+								th:value="${cliente.num_telf}">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label for="txtManager_id" class="col-sm-2 col-form-label">Estado</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" id="estado"
+								name="estado" placeholder="Estado"
+								th:value="${cliente.estado}">
+						</div>
+					</div>
+				
+
+					<div class="form-group row">
+						<div class="col-sm-10">
+							<button type="submit" class="btn btn-primary">
+								<i class="fas fa-save"></i> Grabar
+							</button>
+							<a th:href="@{/cliente}" class="btn btn-danger"> <i
+								class="fas fa-undo"></i> Cancelar
+							</a>
+						</div>
+					</div>
+				</form>
+
+			</div>
+			<div class="card-footer text-muted border-success"></div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

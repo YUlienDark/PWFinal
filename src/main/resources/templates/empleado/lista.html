@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+		<h1>Empleados</h1>
+
+		<div class="card border-success text-center ">
+			<div class="card-header border-success">Empleados</div>
+			<div class="card-body">
+
+				<form th:action="@{'/empleado/buscar'}" method="get"
+					class="form-inline">
+					<div class="form-group mx-sm-3 mb-2">
+						<input type="text" class="form-control" id="txtId" name="txtId"
+							placeholder="Id">
+					</div>
+					<button type="submit" class="btn btn-primary mb-2">buscar</button>
+				</form>
+				<form th:action="@{'/empleado/buscarNombreApellido'}" method="get"
+					class="form-inline">
+					<div class="form-group mx-sm-3 mb-2">
+						<input type="text" class="form-control" id="txtId"
+							name="Nombreempleado"
+							placeholder="Nombre y Apellido"
+							>
+							<input type="text" class="form-control" id="txtId"
+							name=  "Apellidoempleado"
+							placeholder="Nombre y Apellido"
+							>
+					</div>
+					<button type="submit" class="btn btn-primary mb-2">buscar</button>
+				</form>
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead class="bg-primary text-white">
+							<tr>
+								<th scope="col">Id</th>
+								<th scope="col">Nombre</th>
+								<th scope="col">Apellido</th>
+								<th scope="col">Genero</th>
+								<th scope="col">Tipo de documento</th>
+								<th scope="col">Numero de documento</th>
+
+								<th scope="col">Estado</th>
+								<th scope="col" colspan="3">Options</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="empleados:${empleados}">
+								<th scope="row" th:text="${empleados.idEmpleado}"></th>
+								<td class="text-left" th:text="${empleados.Nombreempleado}"></td>
+								<td class="text-left" th:text="${empleados.Apellidoempleado}"></td>
+								<td class="text-left" th:text="${empleados.Genero}"></td>
+								<td class="text-left" th:text="${empleados.tipo_documento}"></td>
+								<td class="text-left" th:text="${empleados.num_documento}"></td>
+								<td class="text-left" th:text="${empleados.Estado}"></td>
+
+
+
+								<td><a
+									th:href="@{'/empleado/edit/' + ${empleados.idEmpleado}}"
+									class="btn btn-info"> <i class="fas fa-edit"></i>
+								</a></td>
+								<td><a
+									th:href="@{'/empleado/del/' + ${empleados.idEmpleado}}"
+									class="btn btn-danger"> <i class="fas fa-trash-alt"></i>
+								</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+			<div class="card-footer text-muted border-success">
+				<a th:href="@{/empleado/new/}" class="btn btn-success"> <i
+					class="fas fa-file"></i> Nuevo empleado
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
+
+
+
+

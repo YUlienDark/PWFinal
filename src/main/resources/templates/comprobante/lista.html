@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container">
+		<h1>Comprobante</h1>
+
+		<div class="card border-success text-center ">
+			<div class="card-header border-success">Comprobante</div>
+			<div class="card-body">
+
+				<form th:action="@{'/comprobante/buscar'}" method="get"
+					class="form-inline">
+					<div class="form-group mx-sm-3 mb-2">
+						<input type="text" class="form-control" id="txtId" name="txtId"
+							placeholder="Id">
+					</div>
+					<button type="submit" class="btn btn-primary mb-2">buscar</button>
+				</form>
+
+				<div class="table-responsive">
+					<table class="table table-striped">
+						<thead class="bg-primary text-white">
+							<tr>
+								<th scope="col">Id</th>
+								<th scope="col">Descripcion</th>
+								<th scope="col">Total pago</th>
+								<th scope="col">Cotizacion</th>
+									<th scope="col">Empleado</th>
+										<th scope="col">Fecha de emision</th>
+								<th scope="col" colspan="3">Options</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="comprobante:${comprobantes}">
+								<th scope="row" th:text="${comprobante.idComprobante}"></th>
+								<td class="text-left" th:text="${comprobante.descripcion}"></td>
+								<td class="text-left" th:text="${comprobante.totalpago}"></td>
+								<td class="text-left" th:text="${comprobante.cotizacion.idCotizacion}"></td>
+								<td class="text-left" th:text="${comprobante.empleado.Nombreempleado}"></td>
+								<td class="text-left" th:text="${comprobante.Fechaemision}"></td>
+								
+								
+								
+								<td><a th:href="@{'/comprobante/edit/' + ${comprobante.idComprobante}}"
+									class="btn btn-info"> <i class="fas fa-edit"></i>
+								</a></td>
+								<td><a  th:href="@{'/comprobante/del/' + ${comprobante.idComprobante}}"
+									class="btn btn-danger" > <i class="fas fa-trash-alt"></i>
+								</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+			</div>
+			<div class="card-footer text-muted border-success">
+				<a th:href="@{/comprobante/new/}"
+					class="btn btn-success"> <i class="fas fa-file"></i> Nuevo Comprobante
+				</a>
+			</div>
+		</div>
+	</div>
+
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
+
